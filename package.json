@@ -1,0 +1,47 @@
+{
+	"author": {
+		"name": "Oscar Palmér",
+		"url": "https://oscarpalmer.se"
+	},
+	"browser": "dist/charts.iife.js",
+	"description": "A library for making SVG-based charts? How original…",
+	"devDependencies": {
+		"esbuild": "^0.17",
+		"typescript": "^5.0",
+		"xo": "^0.54"
+	},
+	"exports": {
+		".": {
+			"types": "./src/index.d.ts",
+			"browser": "./dist/charts.iife.js",
+			"module": "./dist/charts.esm.js",
+			"import": "./dist/charts.esm.js",
+			"default": "./dist/charts.esm.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"files": ["dist", "src"],
+	"jsdelivr": "dist/charts.iife.js",
+	"keywords": [
+		"chart",
+		"svg"
+	],
+	"license": "MIT",
+	"module": "dist/charts.esm.js",
+	"name": "@oscarpalmer/charts",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/oscarpalmer/charts.git"
+	},
+	"scripts": {
+		"build": "npm run build:esm; npm run build:iife; npm run types",
+		"build:esm": "esbuild ./src/index.js --bundle --format=esm --outfile=./dist/charts.esm.js --target=es2020",
+		"build:iife": "esbuild ./src/index.js --bundle --minify --format=iife --global-name=Charts --outfile=./dist/charts.iife.js --target=es2020",
+		"types": "./node_modules/.bin/tsc ./src/index.js --allowJs --declaration --emitDeclarationOnly --removeComments",
+		"xo": "./node_modules/.bin/xo ./src/*.js --env browser"
+	},
+	"type": "module",
+	"types": "src/index.d.ts",
+	"unpkg": "dist/charts.iife.js",
+	"version": "0.1.0"
+}
